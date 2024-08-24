@@ -7,7 +7,7 @@ import (
 
 func RunSVMChain() {
 	chainFolderName := "rollup-svm"
-	chainInit := "start-chain.sh"
+	chainInit := "run.sh"
 
 	seqFolderName := "svm-sequencer-node"
 	seqInit := "scripts/test.sh"

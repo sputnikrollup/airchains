@@ -19,7 +19,7 @@ Before you begin, ensure you have the following installed:
 Clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/airchains-network/airchains.git
+git clone https://github.com/sputnikrollup/airchains.git
 cd airchains
 ```
 Build the project:

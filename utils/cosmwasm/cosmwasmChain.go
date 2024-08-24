@@ -7,7 +7,7 @@ import (
 )
 
 func CosmosChainClone() {
-	repoURL := "https://github.com/airchains-network/rollup-cosmwasm.git"
+	repoURL := "https://github.com/sputnikrollup/rollup-cosmwasm.git"
 	destinationFolder := "rollup-cosmwasm"
 	destinationPath := filepath.Join(".", destinationFolder)
 	if err := utils.ChainRepoCloner(repoURL, destinationPath, "SVM"); err != nil {
