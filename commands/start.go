@@ -10,7 +10,7 @@ import (
 func StartType() {
 	prompt := promptui.Select{
 		Label: "Select your chain type : ",
-		Items: []string{"Start a new chain", "Run a non validator node", "Run a validator node"},
+		Items: []string{"Start a new chain"},
 		Templates: &promptui.SelectTemplates{
 			Label:    "{{ . | cyan }}",
 			Active:   "\U000025B6 {{ . | green  }}",
@@ -31,12 +31,5 @@ func StartType() {
 		utils.DelayLoader()
 		InitFunction()
 
-	}
-
-	if selectedStartType == "Run a non validator node" {
-		fmt.Println("Running a non validator node...")
-		fmt.Println("Please refer to the documentation at https://docs.airchains.io for more information")
-		utils.DelayLoader()
-		RunNonValidatorNode()
 	}
 }

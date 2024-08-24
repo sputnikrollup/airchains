@@ -130,7 +130,7 @@ func cosmwasmDAType() map[string]interface{} {
 
 	prompt := promptui.Select{
 		Label: "Select your DA type : ",
-		Items: []string{"Celestia", "Avail", "Eigen Layer"},
+		Items: []string{"Celestia", "Avail"},
 		Templates: &promptui.SelectTemplates{
 			Label:    "{{ . | cyan }}",
 			Active:   "\U000025B6 {{ if eq . \"Eigen Layer\" }}{{ . | red | cyan }} (Coming Soon){{ else }}{{ . | green }}{{ end }}",
@@ -144,14 +144,10 @@ func cosmwasmDAType() map[string]interface{} {
 		fmt.Printf("Prompt failed %v\n", err)
 		return evmDAType()
 	}
-	if daTech == "Eigen Layer" {
-		fmt.Printf("Eigen Layer is coming soon. Please select other DAs for now\n")
-		evmDAType()
-	} else {
-		fmt.Printf("You selected %s\n", daTech)
-		utils.DaRPC()
-		utils.SettlementRPC()
-	}
+
+	fmt.Printf("You selected %s\n", daTech)
+	utils.DaRPC()
+	utils.SettlementRPC()
 
 	chainInfoKeyValue = map[string]interface{}{
 		"daSelected": daTech,
@@ -165,7 +161,7 @@ func cosmwasmSequencerType() map[string]interface{} {
 	var sequencerKeyValue map[string]interface{}
 	prompt := promptui.Select{
 		Label: "Select your sequencer type : ",
-		Items: []string{"Air Sequencer", "Espresso Sequencer"},
+		Items: []string{"Air Sequencer"},
 		Templates: &promptui.SelectTemplates{
 			Label:    "{{ . | cyan }}",
 			Active:   "\U000025B6 {{ if eq . \"Espresso Sequencer\" }}{{ . | red | cyan }} (Coming Soon){{ else }}{{ . | green }}{{ end }}",
@@ -179,13 +175,10 @@ func cosmwasmSequencerType() map[string]interface{} {
 		fmt.Printf("Prompt failed %v\n", err)
 		evmSequencerType()
 	}
-	if sequencerValue == "Espresso Sequencer" {
-		fmt.Printf("Espresso Sequencer is coming soon. Only air sequencer is available for now\n")
-		evmSequencerType()
-	} else {
-		fmt.Printf("You selected %s\n", sequencerValue)
-		cosmwasm.CosmwasmSequencerClone()
-	}
+
+	fmt.Printf("You selected %s\n", sequencerValue)
+	cosmwasm.CosmwasmSequencerClone()
+
 	sequencerKeyValue = map[string]interface{}{
 		"sequencerType": sequencerValue,
 	}

@@ -26,7 +26,7 @@ func svmDAType() map[string]interface{} {
 
 	prompt := promptui.Select{
 		Label: "Select your DA type : ",
-		Items: []string{"Celestia", "Avail", "Eigen Layer"},
+		Items: []string{"Celestia", "Avail"},
 		Templates: &promptui.SelectTemplates{
 			Label:    "{{ . | cyan }}",
 			Active:   "\U000025B6 {{ if eq . \"Eigen Layer\" }}{{ . | red | cyan }} (Coming Soon){{ else }}{{ . | green }}{{ end }}",
@@ -40,15 +40,10 @@ func svmDAType() map[string]interface{} {
 		fmt.Printf("Prompt failed %v\n", err)
 		return svmDAType()
 	}
-	if daTech == "Eigen Layer" {
-		fmt.Printf("Eigen Layer is coming soon. Please select other DAs for now\n")
-		svmDAType()
-	} else {
-		fmt.Printf("You selected %s\n", daTech)
-		utils.DaRPC()
-		utils.SettlementRPC()
 
-	}
+	fmt.Printf("You selected %s\n", daTech)
+	utils.DaRPC()
+	utils.SettlementRPC()
 
 	chainInfoKeyValue = map[string]interface{}{
 		"daSelected": daTech,
@@ -62,7 +57,7 @@ func svmSequencerType() map[string]interface{} {
 	var sequencerKeyValue map[string]interface{}
 	prompt := promptui.Select{
 		Label: "Select your sequencer type : ",
-		Items: []string{"Air Sequencer", "Espresso Sequencer"},
+		Items: []string{"Air Sequencer"},
 		Templates: &promptui.SelectTemplates{
 			Label:    "{{ . | cyan }}",
 			Active:   "\U000025B6 {{ if eq . \"Espresso Sequencer\" }}{{ . | red | cyan }} (Coming Soon){{ else }}{{ . | green }}{{ end }}",
@@ -76,12 +71,7 @@ func svmSequencerType() map[string]interface{} {
 		fmt.Printf("Prompt failed %v\n", err)
 		svmSequencerType()
 	}
-	if sequencerValue == "Espresso Sequencer" {
-		fmt.Printf("Espresso Sequencer is coming soon. Only air sequencer is available for now\n")
-		svmSequencerType()
-	} else {
-		svm.SolanaSequencerClone()
-	}
+	svm.SolanaSequencerClone()
 	sequencerKeyValue = map[string]interface{}{
 		"sequencerType": sequencerValue,
 	}
